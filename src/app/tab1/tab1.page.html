@@ -13,5 +13,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-input placeholder="Judul" [(ngModel)]="Judul"></ion-input>
+  <ion-input placeholder="Isi" [(ngModel)]="Isi"></ion-input>
+  <ion-input type="number" placeholder="Nilai" [(ngModel)]="Nilai"></ion-input>
+  <ion-input type="date" placeholder="Tanggal" [(ngModel)]="Tanggal"></ion-input>
+  <ion-input type="file" accept="image/*" (change)="showPicture($event)"></ion-input>
+  <ion-img [src]="imgSrc" style="width: 200px; height: 200px;"></ion-img>
+  <ion-button (click)="simpan()">SIMPAN</ion-button><br>
+
+  <ion-list>
+    <ion-item>LIST NOTE</ion-item>
+    <ion-item *ngFor="let data of isiData | async">
+      <h2>{{ data.judul }}</h2>
+      <ion-button [routerLink]="['../tab2/', data.judul]" slot="end">Detail</ion-button>
+      <ion-button (click)="deleteNote(data.judul,data.imageURL)" color="danger" slot="end">Delete</ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>

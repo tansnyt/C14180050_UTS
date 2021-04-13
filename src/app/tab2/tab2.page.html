@@ -13,5 +13,22 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-item>LIST NOTE</ion-item>
+    <ion-card *ngFor="let data of isiData | async">
+      <h3>Judul: {{ data.judul }}</h3><br>
+      <ion-input placeholder="Edit Judul" [(ngModel)]="Judul"></ion-input>
+      <h3>Isi: {{ data.isi }}</h3><br>
+      <ion-input placeholder="Isi" [(ngModel)]="Isi"></ion-input>
+      <h3>Nilai: {{ data.nilai }}</h3><br>
+      <ion-input type="number" placeholder="Nilai" [(ngModel)]="Nilai"></ion-input>
+      <h3>Tanggal: {{ data.tanggal }}</h3><br>
+      <ion-input type="date" placeholder="Tanggal" [(ngModel)]="Tanggal"></ion-input>
+      <h3>Image:</h3>
+      <ion-img [src]="data.imageURL" style="width: 200px; height: 200px;"></ion-img>
+      <ion-input type="file" accept="image/*" (change)="showPicture($event)"></ion-input>
+      <ion-img [src]="imgSrc" style="width: 200px; height: 200px;"></ion-img>
+      <ion-button (click)="simpan()">UPDATE</ion-button><br>
+    </ion-card>
+  </ion-list>
 </ion-content>
